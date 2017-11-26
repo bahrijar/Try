@@ -21,7 +21,7 @@ echo "Nomor? (ex : 628xxxx)\nInput : ";
 $nomor = trim(fgets(STDIN));
 echo "Jumlah?\nInput : ";
 $jumlah = trim(fgets(STDIN));
-echo "Jeda? 0-9999999999 (ex:0)";
+echo "Jeda? 0-9999999999 (ex:0)\nInput : ";
 $jeda = trim(fgets(STDIN));
 $execute = telkbomb($nomor, $jumlah, $jeda);
 print $execute;
