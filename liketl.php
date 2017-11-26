@@ -51,11 +51,10 @@ $password = trim(fgets(STDIN));
             echo "Fail Like [" . $media->pk . "]\n";
                 }else{
             echo "Success Like [" . $media->pk . "]\n";
-            }
-        if($a%3==0){
+        }
+            if($a%3==0){
             sleep($jeda);
             echo "Menunggu $jeda Detik Untuk Sesi Berikutnya.\n";
-        }
         }
        endfor;
     }
