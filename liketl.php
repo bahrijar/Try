@@ -23,7 +23,7 @@ $password = trim(fgets(STDIN));
     echo "Jeda Per Sesi?\nInput : ";
     $jeda = trim(fgets(STDIN));
     if($jeda<60){
-        echoecho"Waktu telah diatur 6p detik, karena waktu yang ada masukan rentan terhadap keamanan akun.";
+        echoecho"Waktu telah diatur 60 detik, karena waktu yang ada masukan rentan terhadap keamanan akun.\n";
         $jeda = 60;
     }
     $cekuki = instagram(1, $gip->useragent, 'feed/timeline/', $gip->cookies);
@@ -31,9 +31,9 @@ $password = trim(fgets(STDIN));
     if ($cekuki->status != "ok") {
         $ulang = masuk($gip->username, $gip->password);
         if ($ulang != "data berhasil diinput") {
-            echo "Cookie Telah Mati, Gagal Membuat Ulang Cookie";
+            echo "Cookie Telah Mati, Gagal Membuat Ulang Cookie\n";
         } else {
-            echo "Cookie Telah Mati, Sukses Membuat Ulang Cookie";
+            echo "Cookie Telah Mati, Sukses Membuat Ulang Cookie\n";
         }
     } else {
         
@@ -53,6 +53,7 @@ $password = trim(fgets(STDIN));
             }
         if($a%3==0){
             sleep($jeda);
+            echo "Menunggu $jeda Detik Untuk Sesi Berikutnya.\n";
         }
         }
        endfor;
