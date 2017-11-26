@@ -29,11 +29,9 @@ function threebomb($no, $jum, $wait = 0){
 	return($result);
 }
 echo "Nomor? (ex : 628xxxx)";
-$nomor = fopen(“php://stdin”,“r”);
-$nomor = trim(fgets($nomor));
+$nomor = trim(fgets(STDIN));
 echo "Jumlah?";
-$jumlah = fopen(“php://stdin”,“r”);
-$jumlah = trim(fgets($jumlah));
+$jumlah = trim(fgets(STDIN));
 $execute = threebomb($nomor, $jumlah);
 print $execute;
 ?>
