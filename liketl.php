@@ -54,8 +54,8 @@ $password = trim(fgets(STDIN));
             }
         }
         if($a%3==0){
-            sleep($jeda);
             echo "Menunggu $jeda Detik Untuk Sesi Berikutnya.\n";
+            sleep($jeda);
         }
        endfor;
     }
