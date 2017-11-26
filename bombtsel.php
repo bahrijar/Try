@@ -14,6 +14,7 @@ function telkbomb($no, $jum, $wait){
         echo $server_output."<br>";
         sleep($wait);
         $x++;
+        flush();
     }
 }
 echo "Nomor? (ex : 628xxxx)\nInput : ";
