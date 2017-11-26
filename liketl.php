@@ -20,6 +20,7 @@ $password = trim(fgets(STDIN));
     $gip    = file_get_contents($username.'.ig');
     $gip    = json_decode($gip);
     echo "Hai, $gip->username [".$gip->id."] Klik Enter Untuk Melanjutkan..";
+    $skip = trim(fgets(STDIN));
     echo "Jeda Per Sesi?\nInput : ";
     $jeda = trim(fgets(STDIN));
     if($jeda<60){
