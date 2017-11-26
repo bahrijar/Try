@@ -1,5 +1,5 @@
 <?php
-function threebomb($no, $jum, $wait = 0){
+function threebomb($no, $jum, $wait = 1){
     $x = 1;
     $result = "";
     while($x <= $jum) {
@@ -33,6 +33,8 @@ echo "Nomor? (ex : 628xxxx)\nInput : ";
 $nomor = trim(fgets(STDIN));
 echo "Jumlah?\nInput : ";
 $jumlah = trim(fgets(STDIN));
-$execute = threebomb($nomor, $jumlah);
+echo "Jeda? 0-999999999 (enter for 1)\nInput : ";
+$jeda = trim(fgets(STDIN));
+$execute = threebomb($nomor, $jumlah, $jeda);
 print $execute;
 ?>
