@@ -38,14 +38,16 @@ if (!file_exists("datacookies.ig")) {
         
         $mid = instagram(1, $data->useragent, 'feed/timeline/', $data->cookies);
         $mid = json_decode($mid[1]);
-        
+       for($a=1;$a<31104000;$a++):
         foreach ($mid->items as $media) {
             $like = instagram(1, $data->useragent, 'media/' . $media->pk . '/like/', $data->cookies, generateSignature('{"media_id":"' . $media->pk . '"}'));
             $like = json_decode($like[1]);
-            
             echo "Sukses Like Foto https://instagram.com/p/" . $media->code . "\n";
+        if($a%3==0){
+            sleep(60);
         }
-        
+        }
+       endfor;
     }
 }
 ?>
