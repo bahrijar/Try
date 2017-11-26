@@ -17,7 +17,7 @@ function threebomb($no, $jum, $wait = 0){
         curl_close ($ch);
 		$json = json_decode($server_output);
 		if($json->code == "200" && $json->status == "success"){
-			$result .= $x.". Success send sms to ".$json->MSISDN." ✔<br>";
+			$result .= $x.". Success send sms to ".$json->MSISDN." ✔\n";
 		} else {
 			$result .= "✘ FAIL<br>";
 		}
@@ -28,9 +28,9 @@ function threebomb($no, $jum, $wait = 0){
     }
 	return($result);
 }
-echo "Nomor? (ex : 628xxxx)";
+echo "Nomor? (ex : 628xxxx)\nInput : ";
 $nomor = trim(fgets(STDIN));
-echo "Jumlah?";
+echo "Jumlah?\nInput : ";
 $jumlah = trim(fgets(STDIN));
 $execute = threebomb($nomor, $jumlah);
 print $execute;
