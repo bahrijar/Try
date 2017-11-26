@@ -4,7 +4,7 @@
 ####Change This Copyright Doesn't Make You a Coder :) ####
 #######EDIT THIS AREA#########
 #######END OF EDIT AREA########
-require_once('functest.php');
+require_once('func.php');
 echo "Username?\nInput : ";
 $username =  trim(fgets(STDIN));
 if (!file_exists("$username.ig")) {
