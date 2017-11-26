@@ -24,6 +24,7 @@ function threebomb($no, $jum, $wait = 0){
 		if($wait != 0){
 		    sleep($wait);
 		}
+	    flush();
         $x++;
     }
 	return($result);
