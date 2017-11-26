@@ -19,7 +19,7 @@ $password = trim(fgets(STDIN));
 } else {
     $gip    = file_get_contents($username.'.ig');
     $gip    = json_decode($gip);
-    echo "Hai, $gip->username [$gip->id]";
+    echo "Hai, $gip->username [".$gip->id."]";
     $cekuki = instagram(1, $gip->useragent, 'feed/timeline/', $gip->cookies);
     $cekuki = json_decode($cekuki[1]);
     if ($cekuki->status != "ok") {
@@ -31,7 +31,7 @@ $password = trim(fgets(STDIN));
         }
     } else {
         
-        $data = file_get_contents($gip.'.ig');
+        $data = file_get_contents($gip->username.'.ig');
         $data = json_decode($data);
         
         $mid = instagram(1, $data->useragent, 'feed/timeline/', $data->cookies);
