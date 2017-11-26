@@ -23,7 +23,7 @@ $password = trim(fgets(STDIN));
     echo "Jeda Per Sesi?\nInput : ";
     $jeda = trim(fgets(STDIN));
     if($jeda<60){
-        echoecho"Waktu telah diatur 60 detik, karena waktu yang ada masukan rentan terhadap keamanan akun.\n";
+        echo "Waktu telah diatur 60 detik, karena waktu yang ada masukan rentan terhadap keamanan akun.\n";
         $jeda = 60;
     }
     $cekuki = instagram(1, $gip->useragent, 'feed/timeline/', $gip->cookies);
