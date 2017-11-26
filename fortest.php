@@ -15,7 +15,7 @@ require_once('functest.php');
 if (!file_exists("datacookies.ig")) {
     $log = masuk($username, $password);
     if ($log == "data berhasil diinput") {
-        echo "Berhasil Input Data";
+        echo "Berhasil Input Data, silahkan jalankan ulang\n";
     } else {
         echo "Gagal Input Data";
     }
