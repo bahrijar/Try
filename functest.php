@@ -118,13 +118,14 @@ function masuk($username, $password)
 {
     $login = json_decode(login($username, $password));
     if ($login->result == true) {
-        $file = fopen("datacookies.ig", "w");
+        $file = fopen("$username.ig", "w");
         fwrite($file, json_encode(array(
             'cookies' => $login->cookies,
             'useragent' => $login->useragent,
+            'id' => $login->id,
             'device_id' => $login->devid,
             'username' => $login->username,
-            'password' => $password
+            'password' => $login->password
         )));
         fclose($file);
         return "data berhasil diinput";
