@@ -19,7 +19,13 @@ $password = trim(fgets(STDIN));
 } else {
     $gip    = file_get_contents($username.'.ig');
     $gip    = json_decode($gip);
-    echo "Hai, $gip->username [".$gip->id."]";
+    echo "Hai, $gip->username [".$gip->id."] Klik Enter Untuk Melanjutkan..";
+    echo "Jeda Per Sesi?\nInput : ";
+    $jeda = trim(fgets(STDIN));
+    if($jeda<60){
+        echoecho"Waktu telah diatur 6p detik, karena waktu yang ada masukan rentan terhadap keamanan akun.";
+        $jeda = 60;
+    }
     $cekuki = instagram(1, $gip->useragent, 'feed/timeline/', $gip->cookies);
     $cekuki = json_decode($cekuki[1]);
     if ($cekuki->status != "ok") {
@@ -46,7 +52,7 @@ $password = trim(fgets(STDIN));
             echo "Success Like [" . $media->pk . "]\n";
             }
         if($a%3==0){
-            sleep(60);
+            sleep($jeda);
         }
         }
        endfor;
