@@ -64,6 +64,9 @@ if (!file_exists($username.".ig")) {
             }
             if($no == $jeda):
                 echo "Jeda 120 detik.\n";
+                $h=fopen("jeda-".$username,"w");
+                fwrite($h,1);
+                fclose($h);
                 sleep(120);
             endif;
             if ($type == true) {
