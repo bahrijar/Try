@@ -4,8 +4,7 @@ $pilih = trim(fgets(STDIN));
 if($pilih>4 OR $pilih<1){
     echo "Pilihan Tidak ada, silahkan pilih yang ada!\nMasukan Pilihanmu : ";
     $pilih = trim(fgets(STDIN));
-    $type = 0;
-   
+    if($pilih>4) $type = 0;
 }
 if($pilih==1){
     $type = "unfoll";
