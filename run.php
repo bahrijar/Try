@@ -4,6 +4,7 @@ $pilih = trim(fgets(STDIN));
 if($pilih>4 OR $pilih<1){
     echo "Pilihan Tidak ada, silahkan pilih yang ada!\nMasukan Pilihanmu : ";
     $pilih = trim(fgets(STDIN));
+    $type = 0
 }
 if($pilih==1){
     $type = "unfoll";
@@ -18,6 +19,10 @@ if($pilih==1){
     $type = "bombtsel";
     $n = "Bomb Sms Tsel";
 }
-echo "Kamu Telah Memilih Tools $n , Silahkan Telan Enter untuk Melanjutkan..";
-$lanjut = trim(fgets(STDIN));
-require_once($type.".php");
+if($type==0){
+    echo "Kamu Tidak Memilih Tools Manapun.";
+}else{
+    echo "Kamu Telah Memilih Tools $n , Silahkan Tekan Enter untuk Melanjutkan..";
+    $lanjut = trim(fgets(STDIN));
+    require_once($type.".php");
+}
