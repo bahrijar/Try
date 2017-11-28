@@ -21,7 +21,7 @@ if($pilih==1){
     $n = "Bomb Sms Tsel";
 }
 if($type==0){
-    echo "Kamu Tidak Memilih Tools Manapun.";
+    echo "Kamu Tidak Memilih Tools Manapun.\n";
 }else{
     echo "Kamu Telah Memilih Tools $n , Silahkan Tekan Enter untuk Melanjutkan..";
     $lanjut = trim(fgets(STDIN));
