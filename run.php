@@ -4,7 +4,7 @@ $pilih = trim(fgets(STDIN));
 if($pilih>4 OR $pilih<1){
     echo "Pilihan Tidak ada, silahkan pilih yang ada!\nMasukan Pilihanmu : ";
     $pilih = trim(fgets(STDIN));
-    if($pilih>4) $type = 0;
+    if($pilih>4) $type = "fuck";
 }
 if($pilih==1){
     $type = "unfoll";
@@ -19,7 +19,7 @@ if($pilih==1){
     $type = "bombtsel";
     $n = "Bomb Sms Tsel";
 }
-if($type==0){
+if($type=="fuck"){
     echo "Kamu Tidak Memilih Tools Manapun.\n";
 }else{
     echo "Kamu Telah Memilih Tools $n , Silahkan Tekan Enter untuk Melanjutkan..";
