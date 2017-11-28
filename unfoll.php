@@ -56,13 +56,16 @@ if (!file_exists($username.".ig")) {
         foreach ($cekfoll as $ids) {
             $cek = instagram(1, $data->useragent, 'friendships/show/' . $ids->pk, $data->cookies);
             $cek = json_decode($cek[1]);
-            $no = file_get_contents('jeda-'.$username);
-            if($no = $jeda){
+
+            if(!file_exists('jeda-'.$username)){ 
+                $no = 1;
+            }else{
+                $no = file_get_contents('jeda-'.$username);
+            }
+            if($no = $jeda):
                 echo "Jeda 120 detik.\n";
                 sleep(120);
-            }
-
-if(!file_exists('jeda-'.$username)) $no = 1;
+            endif;
             if ($type == true) {
                 if ($cek->followed_by == false) {
                     $unfollow = instagram(1, $data->useragent, 'friendships/destroy/' . $ids->pk . "/", $data->cookies, generateSignature('{"user_id":"' . $ids->pk . '"}'));
