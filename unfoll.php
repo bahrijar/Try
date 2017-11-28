@@ -25,7 +25,7 @@ if (!file_exists($username.".ig")) {
     echo "Jeda Setiap Sudah Unfoll? (max = 100 jika lebih, akan otomatis di-Set 100)\nInput : ";
     $jeda = trim(fgets(STDIN));
     if($jeda>100) $jeda = 100;
-    echo "Jeda sudah di atur sebanyak setiap $jeda orang yang di Unfollow";
+    echo "Jeda sudah di atur sebanyak setiap $jeda orang yang di Unfollow\n";
     if($type==1) $type = "true";
     $gip    = file_get_contents($username.'.ig');
     $gip    = json_decode($gip);
@@ -52,8 +52,6 @@ if (!file_exists($username.".ig")) {
         $cekfoll = instagram(1, $data->useragent, 'friendships/' . $userid . '/following/', $data->cookies);
         $cekfoll = json_decode($cekfoll[1]);
         $cekfoll = array_slice($cekfoll->users, 0, $jumlah);
-        
-        
         
         foreach ($cekfoll as $ids) {
             $cek = instagram(1, $data->useragent, 'friendships/show/' . $ids->pk, $data->cookies);
