@@ -1,6 +1,10 @@
 <?php
 echo "List Tools :\n[1]Unfollow Not Followback Instagram\n[2]Like Timeline Instagram\n[3]Bomb Sms Tri\n[4]Bomb Sms Tsel\nMasukan Pilihanmu (1-4) : ";
 $pilih = trim(fgets(STDIN));
+if($pilih>4 OR $pilih<1){
+    echo "Pilihan Tidak ada, silahkan pilih yang ada!\nMasukan Pilihanmu : ";
+    $pilih = trim(fgets(STDIN));
+}
 if($pilih==1){
     $type = "unfoll";
     $n = "Unfollow Not Followback Instagram";
@@ -13,8 +17,6 @@ if($pilih==1){
 }elseif($pilih==4){
     $type = "bombtsel";
     $n = "Bomb Sms Tsel";
-}else{
-    echo "Pilihan Tidak ada, silahkan pilih yang ada!\nMasukan Pilihanmu : ";
 }
 echo "Kamu Telah Memilih Tools $n , Silahkan Telan Enter untuk Melanjutkan..";
 $lanjut = trim(fgets(STDIN));
