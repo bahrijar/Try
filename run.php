@@ -1,5 +1,5 @@
 <?php
-echo "List Tools :\n[1]Unfollow Not Followback Instagram\n[2]Like Timeline Instagram\n[3]Bomb Sms Tri\n[4]\nBomb Sms Tsel\nMasukan Pilihanmu : ";
+echo "List Tools :\n[1]Unfollow Not Followback Instagram\n[2]Like Timeline Instagram\n[3]Bomb Sms Tri\n[4]nBomb Sms Tsel\nMasukan Pilihanmu : ";
 $pilih = trim(fgets(STDIN));
 if($pilih==1){
     $type = "unfoll";
