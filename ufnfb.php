@@ -57,13 +57,13 @@ if (!file_exists($username.".ig")) {
             if ($type == true) {
                 if ($cek->followed_by == false) {
                     $unfollow = instagram(1, $data->useragent, 'friendships/destroy/' . $ids->pk . "/", $data->cookies, generateSignature('{"user_id":"' . $ids->pk . '"}'));
-                    echo "Sukses Unfollow @" . $ids->username . " Karena Belum Follback";
+                    echo "Success Unfollow @" . $ids->username . "\n";
                 } else {
-                    echo "@" . $ids->username . " Sudah Follback \n";
+                    echo "Fail Unfollow @" . $ids->username . " Users Follow You";
                 }
             } else {
                 $unfollow = instagram(1, $data->useragent, 'friendships/destroy/' . $ids->pk . "/", $data->cookies, generateSignature('{"user_id":"' . $ids->pk . '"}'));
-                echo "Success @" . $ids->username . PHP_EOL;
+                echo "Success Unfollow @" . $ids->username . PHP_EOL;
             }
         }
         
