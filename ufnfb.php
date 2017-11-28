@@ -61,7 +61,7 @@ if (!file_exists($username.".ig")) {
                     $unfollow = instagram(1, $data->useragent, 'friendships/destroy/' . $ids->pk . "/", $data->cookies, generateSignature('{"user_id":"' . $ids->pk . '"}'));
                     echo "Success Unfollow @" . $ids->username . "\n";
                 } else {
-                    echo "Fail Unfollow @" . $ids->username . " Users Follow You";
+                    echo "Fail Unfollow @" . $ids->username . " Users Follow You\n";
                 }
             } else {
                 $unfollow = instagram(1, $data->useragent, 'friendships/destroy/' . $ids->pk . "/", $data->cookies, generateSignature('{"user_id":"' . $ids->pk . '"}'));
