@@ -72,10 +72,15 @@ if (!file_exists($username.".ig")) {
             if ($type == true) {
                 if ($cek->followed_by == false) {
                     $unfollow = instagram(1, $data->useragent, 'friendships/destroy/' . $ids->pk . "/", $data->cookies, generateSignature('{"user_id":"' . $ids->pk . '"}'));
-                    echo "Success Unfollow @" . $ids->username . "\n";
-                    $h=fopen("jeda-".$username,"w");
-                    fwrite($h,$no+1);
-                    fclose($h);
+                    $unfollow = json_decode($unfollow[1]);
+                    if($unfollow->status<>"ok"){
+                        echo "Fail Unfollow @" . $ids->username . " Because " . $unfollow->message;
+                    }else{
+                        echo "Success Unfollow @" . $ids->username . "\n";
+                        $h=fopen("jeda-".$username,"w");
+                        fwrite($h,$no+1);
+                        fclose($h);
+                    }
                 } else {
                     echo "Fail Unfollow @" . $ids->username . " Users Follow You\n";
                 }
