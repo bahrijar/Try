@@ -10,14 +10,14 @@ echo "Username?\nInput : ";
 $username =  trim(fgets(STDIN));
 #######END OF EDIT AREA########
 require_once('func.php');
-if (!file_exists("datacookies.ig")) {
+if (!file_exists($username.".ig")) {
     echo "Password?\nInput : ";
     $password = trim(fgets(STDIN));
     $log = masuk($username, $password);
     if ($log == "data berhasil diinput") {
-        echo "Berhasil Input Data";
+        echo "Berhasil Input Data\n";
     } else {
-        echo "Gagal Input Data";
+        echo "Gagal Input Data\n";
     }
 } else {
     echo "Type? (1 = Yang Gak Follback)\nInput : ";
@@ -30,9 +30,9 @@ if (!file_exists("datacookies.ig")) {
     if ($cekuki->status != "ok") {
         $ulang = masuk($username, $password);
         if ($ulang != "data berhasil diinput") {
-            echo "Cookie Telah Mati, Gagal Membuat Ulang Cookie";
+            echo "Cookie Telah Mati, Gagal Membuat Ulang Cookie\n";
         } else {
-            echo "Cookie Telah Mati, Sukses Membuat Ulang Cookie";
+            echo "Cookie Telah Mati, Sukses Membuat Ulang Cookie\n";
         }
     } else {
         
