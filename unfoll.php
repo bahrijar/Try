@@ -78,7 +78,10 @@ if (!file_exists($username.".ig")) {
                 }
             } else {
                 $unfollow = instagram(1, $data->useragent, 'friendships/destroy/' . $ids->pk . "/", $data->cookies, generateSignature('{"user_id":"' . $ids->pk . '"}'));
-                echo "Success Unfollow @" . $ids->username . PHP_EOL;
+                echo "Success Unfollow @" . $ids->username . "\n";
+                    $h=fopen("jeda-".$username,"w");
+                    fwrite($h,$no+1);
+                    fclose($h);
             }
         }
         
