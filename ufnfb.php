@@ -22,8 +22,10 @@ if (!file_exists($username.".ig")) {
 } else {
     echo "Type? (1 = Yang Gak Follback)\nInput : ";
     $type = trim(fgets(STDIN));
-    echo "Jeda Setiap Ekse? (Recom = 1)\nInput : ";
-    $jeda = trim(fgets(STDIN));
+    echo "Jeda Setiap Sudah Unfoll? (max = 100 jika lebih, akan otomatis di-Set 100)\nInput : ";
+    $jeda = trim(fgets(STDIN))
+    if($jeda > 100) $jeda = 100;
+    echo "Jeda sudah di atur sebanyak setiap $jeda orang yang di Unfollow";
     if($type==1) $type = "true";
     $gip    = file_get_contents($username.'.ig');
     $gip    = json_decode($gip);
@@ -56,10 +58,20 @@ if (!file_exists($username.".ig")) {
         foreach ($cekfoll as $ids) {
             $cek = instagram(1, $data->useragent, 'friendships/show/' . $ids->pk, $data->cookies);
             $cek = json_decode($cek[1]);
+            $no = file_get_contents('jeda-'.$username);
+            if($no = $jeda){
+                echo "Jeda 120 detik.\n";
+                sleep(120);
+            }
+            \
+if(!file_exists('jeda-'.$username)) $no = 1;
             if ($type == true) {
                 if ($cek->followed_by == false) {
                     $unfollow = instagram(1, $data->useragent, 'friendships/destroy/' . $ids->pk . "/", $data->cookies, generateSignature('{"user_id":"' . $ids->pk . '"}'));
                     echo "Success Unfollow @" . $ids->username . "\n";
+                    $h=fopen("jeda-".$username,"w");
+                    fwrite($h,$no+1);
+                    fclose($h);
                 } else {
                     echo "Fail Unfollow @" . $ids->username . " Users Follow You\n";
                 }
@@ -67,7 +79,6 @@ if (!file_exists($username.".ig")) {
                 $unfollow = instagram(1, $data->useragent, 'friendships/destroy/' . $ids->pk . "/", $data->cookies, generateSignature('{"user_id":"' . $ids->pk . '"}'));
                 echo "Success Unfollow @" . $ids->username . PHP_EOL;
             }
-            sleep($jeda);
         }
         
         
