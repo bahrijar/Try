@@ -63,7 +63,7 @@ if (!file_exists($username.".ig")) {
                 echo "Jeda 120 detik.\n";
                 sleep(120);
             }
-            \
+
 if(!file_exists('jeda-'.$username)) $no = 1;
             if ($type == true) {
                 if ($cek->followed_by == false) {
