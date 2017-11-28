@@ -3,11 +3,11 @@ echo "List Tools :\n[1]Unfollow Not Followback Instagram\n[2]Like Timeline Insta
 $pilih = trim(fgets(STDIN));
 if($pilih==1){
     $type = "unfoll";
-}elseif($pilih==2)
+}elseif($pilih==2){
     $type = "liketl";
-}elseif($pilih==3)
+}elseif($pilih==3){
     $type = "bomb3";
-}elseif($pilih==4)
+}elseif($pilih==4){
     $type = "bombtsel";
 }else{
     echo "Pilihan Tidak ada, silahkan pilih yang ada!\nMasukan Pilihanmu : ";
