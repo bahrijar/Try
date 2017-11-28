@@ -22,7 +22,7 @@ if (!file_exists($username.".ig")) {
 } else {
     echo "Type? (1 = Yang Gak Follback)\nInput : ";
     $type = trim(fgets(STDIN));
-    echo "Jeda Setiap Ekse? (Recom = 1)";
+    echo "Jeda Setiap Ekse? (Recom = 1)\nInput : ";
     $jeda = trim(fgets(STDIN));
     if($type==1) $type = "true";
     $gip    = file_get_contents($username.'.ig');
