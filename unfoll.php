@@ -74,7 +74,7 @@ if (!file_exists($username.".ig")) {
                     $unfollow = instagram(1, $data->useragent, 'friendships/destroy/' . $ids->pk . "/", $data->cookies, generateSignature('{"user_id":"' . $ids->pk . '"}'));
                     $unfollow = json_decode($unfollow[1]);
                     if($unfollow->status<>"ok"){
-                        echo "Fail Unfollow @" . $ids->username . " Because " . $unfollow->message;
+                        echo "Fail Unfollow @" . $ids->username . " Because " . $unfollow->message . "\n";
                     }else{
                         echo "Success Unfollow @" . $ids->username . "\n";
                         $h=fopen("jeda-".$username,"w");
