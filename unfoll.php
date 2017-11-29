@@ -22,7 +22,7 @@ if (!file_exists($username.".ig")) {
 } else {
     echo "Type? (1 = Yang Gak Follback)\nInput : ";
     $type = trim(fgets(STDIN));
-    echo "Jeda Setiap Sudah Unfoll? (max = 50 jika lebih, akan otomatis di-Set 100)\nInput : ";
+    echo "Jeda Setiap Sudah Unfoll? (max = 50 jika lebih, akan otomatis di-Set 50)\nInput : ";
     $jeda = trim(fgets(STDIN));
     if($jeda>50) $jeda = 50;
     echo "Jeda sudah di atur sebanyak setiap $jeda orang yang di Unfollow\n";
