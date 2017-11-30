@@ -63,11 +63,11 @@ if (!file_exists($username.".ig")) {
                 $no = file_get_contents('jeda-'.$username);
             }
             if($no == $jeda):
-                echo "Jeda 120 detik.\n";
+                echo "Jeda 180 detik.\n";
                 $h=fopen("jeda-".$username,"w");
                 fwrite($h,1);
                 fclose($h);
-                sleep(120);
+                sleep(180);
             endif;
             if ($type == true) {
                 if ($cek->followed_by == false) {
@@ -80,9 +80,11 @@ if (!file_exists($username.".ig")) {
                         $h=fopen("jeda-".$username,"w");
                         fwrite($h,$no+1);
                         fclose($h);
+                        sleep(1);
                     }
                 } else {
                     echo "Fail Unfollow @" . $ids->username . " Users Follow You\n";
+                    break;
                 }
             } else {
                 $unfollow = instagram(1, $data->useragent, 'friendships/destroy/' . $ids->pk . "/", $data->cookies, generateSignature('{"user_id":"' . $ids->pk . '"}'));
