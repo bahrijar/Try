@@ -62,7 +62,7 @@ if (!file_exists($username.".ig")) {
             }else{
                 $no = file_get_contents('jeda-'.$username);
             }
-            if($no == $jeda):
+            if($no%$jeda==0 AND $no>0):
                 echo "Jeda 180 detik.\n";
                      $h=fopen("jeda-".$username,"w");
                      fwrite($h,"0");
