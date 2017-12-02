@@ -9,6 +9,8 @@ require_once('func.php');
 echo "Username?\nInput : ";
 $username = trim(fgets(STDIN));
 if (!file_exists("$username.ig")) {
+    echo "Password?\nInput : ";
+    $password = trim(fgets(STDIN));
     $log = masuk($username, $password);
     if ($log == "data berhasil diinput") {
         echo "Berhasil Input Data\n";
@@ -28,14 +30,16 @@ if (!file_exists("$username.ig")) {
             echo "Cookie Telah Mati, Sukses Membuat Ulang Cookie\n";
         }
     } else {
-        echo "Type? (1 = Followers)";
+        echo "Type? (1 = Followers)\n Input : ";
         $type = trim(fgets(STDIN));
         if($type==1){
             $type = "followers";
         }else{
             $type = "following";
         }
-        echo "Kamu Memilih type $type";
+        echo "Kamu Memilih type $type\n";
+        echo "Target? (Tanpa @)\nInput : ";
+        $targey = trim(fgets(STDIN));
         echo "Ekse? (Ekse itu adalah brp kali kita eksekusi (follow orang) sebelum dijeda (120 detik), maksimal 10\nInput : ";
         $jeda = trim(fgets(STDIN));
         if($jeda>10) $jeda = 10;
