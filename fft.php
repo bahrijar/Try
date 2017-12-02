@@ -1,0 +1,78 @@
+<?php
+
+####Copyright By Janu fb.com/lastducky####
+####Thanks For Indra Swastika(fungsi.php)####
+####Change This Copyright Doesn't Make You a Coder :) ####
+
+
+require_once('fungsi.php');
+echo "Username?\nInput : ";
+$username = trim(fgets(STDIN)));
+if (!file_exists("$username.ig")) {
+    $log = masuk($username, $password);
+    if ($log == "data berhasil diinput") {
+        echo "Berhasil Input Data\n";
+    } else {
+        echo "Gagal Input Data\n";
+    }
+} else {
+    $gip    = file_get_contents($username.'.ig');
+    $gip    = json_decode($gip);
+    $cekuki = instagram(1, $gip->useragent, 'feed/timeline/', $gip->cookies);
+    $cekuki = json_decode($cekuki[1]);
+    if ($cekuki->status != "ok") {
+        $ulang = masuk($username, $password);
+        if ($ulang != "data berhasil diinput") {
+            echo "Cookie Telah Mati, Gagal Membuat Ulang Cookie\nSilahkan Ketik 'rm $username.ig' untuk membuat ulang cookie\n";
+        } else {
+            echo "Cookie Telah Mati, Sukses Membuat Ulang Cookie\n";
+        }
+    } else {
+        echo "Type? (1 = Followers)";
+        $type = trim(fgets(STDIN)));
+        if($type==1){
+            $type = "followers";
+        }else{
+            $type = "following";
+        }
+        echo "Kamu Memilih type $type silahkan klik enter untuk melanjutkan...";
+        $lanjut = trim(fgets(STDIN)));
+        $data = file_get_contents('datacookies.ig');
+        $data = json_decode($data);
+        
+        $userid = instagram(1, $data->useragent, 'users/' . $target . '/usernameinfo', $data->cookies);
+        $userid = json_decode($userid[1]);
+        $userid = $userid->user->pk;
+        
+        if ($type == "followers") {
+            $cekfoll = instagram(1, $data->useragent, 'friendships/' . $userid . '/followers/', $data->cookies);
+            $cekfoll = json_decode($cekfoll[1]);
+            $cekfoll = array_slice($cekfoll->users, 0, $jumlah);
+            foreach ($cekfoll as $ids) {
+                $follow = instagram(1, $data->useragent, 'friendships/create/' . $ids->pk . "/", $data->cookies, generateSignature('{"user_id":"' . $ids->pk . '"}'));
+                $follow = json_decode($follow[1]);
+                if($follow->status<>"fail"){
+                     echo "Success Follow @" . $ids->username . "\n";
+                }else{
+                     echo "Fail Follow @" . $ids->username . " (" . $status->message . ")\n";
+                     break;
+                }
+            }
+        } else {
+            $cekfoll = instagram(1, $data->useragent, 'friendships/' . $userid . '/following/', $data->cookies);
+            $cekfoll = json_decode($cekfoll[1]);
+            $cekfoll = array_slice($cekfoll->users, 0, $jumlah);
+            foreach ($cekfoll as $ids) {
+                $follow = instagram(1, $data->useragent, 'friendships/create/' . $ids->pk . "/", $data->cookies, generateSignature('{"user_id":"' . $ids->pk . '"}'));
+                $follow = json_decode($follow[1]);
+                if($follow->status<>"fail"){
+                     echo "Success Follow @" . $ids->username . "\n";
+                }else{
+                     echo "Fail Follow @" . $ids->username . " (" . $status->message . ")\n";
+                     break;
+                }
+            }
+        }
+    }
+}
+?>
