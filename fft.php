@@ -7,7 +7,7 @@
 
 require_once('fungsi.php');
 echo "Username?\nInput : ";
-$username = trim(fgets(STDIN)));
+$username = trim(fgets(STDIN));
 if (!file_exists("$username.ig")) {
     $log = masuk($username, $password);
     if ($log == "data berhasil diinput") {
@@ -29,15 +29,19 @@ if (!file_exists("$username.ig")) {
         }
     } else {
         echo "Type? (1 = Followers)";
-        $type = trim(fgets(STDIN)));
+        $type = trim(fgets(STDIN));
         if($type==1){
             $type = "followers";
         }else{
             $type = "following";
         }
-        echo "Kamu Memilih type $type silahkan klik enter untuk melanjutkan...";
-        $lanjut = trim(fgets(STDIN)));
-        $data = file_get_contents('datacookies.ig');
+        echo "Kamu Memilih type $type";
+        echo "Ekse? (Ekse itu adalah brp kali kita eksekusi (follow orang) sebelum dijeda (120 detik), maksimal 10\nInput : ";
+        $jeda = trim(fgets(STDIN));
+        if($jeda>10) $jeda = 10;
+        echo "Dijeda setiap $jeda kali eksekusi, silahkan klik enter untuk memulai...";
+        $lanjut = trim(fgets(STDIN));
+        $data = file_get_contents($username.'.ig');
         $data = json_decode($data);
         
         $userid = instagram(1, $data->useragent, 'users/' . $target . '/usernameinfo', $data->cookies);
@@ -49,12 +53,30 @@ if (!file_exists("$username.ig")) {
             $cekfoll = json_decode($cekfoll[1]);
             $cekfoll = array_slice($cekfoll->users, 0, $jumlah);
             foreach ($cekfoll as $ids) {
+                if(!file_exists('jedafft-'.$username)){ 
+                     $no = 1;
+                }else{
+                     $no = file_get_contents('jedafft-'.$username);
+                }
+                if($no == $jeda):
+                     echo "Jeda 120 detik.\n";
+                     $h=fopen("jedafft-".$username,"w");
+                     fwrite($h,0);
+                     fclose($h);
+                     sleep(120);
+                endif;
                 $follow = instagram(1, $data->useragent, 'friendships/create/' . $ids->pk . "/", $data->cookies, generateSignature('{"user_id":"' . $ids->pk . '"}'));
                 $follow = json_decode($follow[1]);
                 if($follow->status<>"fail"){
                      echo "Success Follow @" . $ids->username . "\n";
+                     $h=fopen("jedafft-".$username,"w");
+                     fwrite($h,$no+1);
+                     fclose($h);
                 }else{
                      echo "Fail Follow @" . $ids->username . " (" . $status->message . ")\n";
+                     $h=fopen("jedafft-".$username,"w");
+                     fwrite($h,0);
+                     fclose($h);
                      break;
                 }
             }
@@ -67,8 +89,14 @@ if (!file_exists("$username.ig")) {
                 $follow = json_decode($follow[1]);
                 if($follow->status<>"fail"){
                      echo "Success Follow @" . $ids->username . "\n";
+                     $h=fopen("jedafft-".$username,"w");
+                     fwrite($h,$no+1);
+                     fclose($h);
                 }else{
                      echo "Fail Follow @" . $ids->username . " (" . $status->message . ")\n";
+                     $h=fopen("jedafft-".$username,"w");
+                     fwrite($h,0);
+                     fclose($h);
                      break;
                 }
             }
