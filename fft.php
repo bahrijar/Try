@@ -43,8 +43,6 @@ if (!file_exists("$username.ig")) {
         echo "Ekse? (Ekse itu adalah brp kali kita eksekusi (follow orang) sebelum dijeda (120 detik), maksimal 10\nInput : ";
         $jeda = trim(fgets(STDIN));
         if($jeda>10) $jeda = 10;
-        echo "Dijeda setiap $jeda kali eksekusi, silahkan klik enter untuk memulai...";
-        $lanjut = trim(fgets(STDIN));
         $data = file_get_contents($username.'.ig');
         $data = json_decode($data);
         
@@ -62,13 +60,13 @@ if (!file_exists("$username.ig")) {
                 }else{
                      $no = file_get_contents('jedafft-'.$username);
                 }
-                if($no >= $jeda):
+                if($no >= $jeda){
                      echo "Jeda 120 detik.\n";
                      $h=fopen("jedafft-".$username,"w");
                      fwrite($h,"0");
                      fclose($h);
                      sleep(120);
-                endif;
+                }
                 $follow = instagram(1, $data->useragent, 'friendships/create/' . $ids->pk . "/", $data->cookies, generateSignature('{"user_id":"' . $ids->pk . '"}'));
                 $follow = json_decode($follow[1]);
                 if($follow->status<>"fail"){
