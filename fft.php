@@ -62,10 +62,10 @@ if (!file_exists("$username.ig")) {
                 }else{
                      $no = file_get_contents('jedafft-'.$username);
                 }
-                if($no == $jeda):
+                if($no >= $jeda):
                      echo "Jeda 120 detik.\n";
                      $h=fopen("jedafft-".$username,"w");
-                     fwrite($h,0);
+                     fwrite($h,"0");
                      fclose($h);
                      sleep(120);
                 endif;
@@ -76,6 +76,7 @@ if (!file_exists("$username.ig")) {
                      $h=fopen("jedafft-".$username,"w");
                      fwrite($h,$no+1);
                      fclose($h);
+                     sleep(1);
                 }else{
                      echo "Fail Follow @" . $ids->username . " (" . $status->message . ")\n";
                      $h=fopen("jedafft-".$username,"w");
