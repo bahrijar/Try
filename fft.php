@@ -64,7 +64,9 @@ if (!file_exists("$username.ig")) {
                 }
                 if($no == $jeda):
                      echo "Jeda 120 detik.\n";
-                     unlink('jedafft-'.$username);
+                     $h=fopen("jedafft-".$username,"w");
+                     fwrite($h,$no+1);
+                     fclose($h);
                      sleep(120);
                 endif;
                 $follow = instagram(1, $data->useragent, 'friendships/create/' . $ids->pk . "/", $data->cookies, generateSignature('{"user_id":"' . $ids->pk . '"}'));
