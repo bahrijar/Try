@@ -58,7 +58,7 @@ if (!file_exists("$username.ig")) {
             $cekfoll = array_slice($cekfoll->users, 0, $jumlah);
             foreach ($cekfoll as $ids) {
                 if(!file_exists('jedafft-'.$username)){ 
-                     $no = 1;
+                     $no = 0;
                 }else{
                      $no = file_get_contents('jedafft-'.$username);
                 }
