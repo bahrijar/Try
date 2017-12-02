@@ -20,7 +20,7 @@ if (!file_exists($username.".ig")) {
         echo "Gagal Input Data\n";
     }
 } else {
-    echo "Type? (1 = Yang Gak Follback)\nInput : ";
+    echo "Type? (1 = Gak Follback)\nInput : ";
     $type = trim(fgets(STDIN));
     echo "Jeda Setiap Sudah Unfoll? (max = 50 jika lebih, akan otomatis di-Set 50)\nInput : ";
     $jeda = trim(fgets(STDIN));
