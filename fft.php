@@ -94,6 +94,7 @@ if (!file_exists("$username.ig")) {
                      $h=fopen("jedafft-".$username,"w");
                      fwrite($h,$no+1);
                      fclose($h);
+                     sleep(1);
                 }else{
                      echo "Fail Follow @" . $ids->username . " (" . $status->message . ")\n";
                      $h=fopen("jedafft-".$username,"w");
