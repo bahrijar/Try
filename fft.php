@@ -39,7 +39,7 @@ if (!file_exists("$username.ig")) {
         }
         echo "Kamu Memilih type $type\n";
         echo "Target? (Tanpa @)\nInput : ";
-        $targey = trim(fgets(STDIN));
+        $target = trim(fgets(STDIN));
         echo "Ekse? (Ekse itu adalah brp kali kita eksekusi (follow orang) sebelum dijeda (120 detik), maksimal 10\nInput : ";
         $jeda = trim(fgets(STDIN));
         if($jeda>10) $jeda = 10;
