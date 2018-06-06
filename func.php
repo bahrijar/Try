@@ -28,47 +28,7 @@ function instagram($ighost, $useragent, $url, $cookie = 0, $data = 0, $httpheade
             return array($header, $body);
 		}
 	}
-function ava_hook($bound, $csrf, $file_url) {
-		$eol = "\r\n";
-		$body = '';
-		$body.= '--'.$bound. $eol;
-		$body.= 'Content-Disposition: form-data; name="_csrftoken"' . $eol . $eol;
-		$body.= $csrf . $eol;
-		$body.= '--'.$bound. $eol;
-		$body.= 'Content-Disposition: form-data; name="post_pic"; filename="post_pic"'. $eol;
-		$body.= 'Content-Type":"application/x-www-form-urlencoded'. $eol;
-		$body.= 'Content-Transfer-Encoding: binary'. $eol. $eol;
-		$body.= file_get_contents($file_url) . $eol;
-		$body.= '--'.$bound .'--' . $eol. $eol;
-		return $body; 
-	}
-function dill($ighost, $useragent, $url, $cookie = 0, $data = 0, $httpheader = array(), $proxy = 0, $userpwd = 0, $is_socks5 = 0){
-		$url = $ighost ? 'https://api.instagram.com/v1/' . $url : $url;
-		$ch = curl_init($url);
-		curl_setopt($ch, CURLOPT_USERAGENT, $useragent);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-		curl_setopt($ch, CURLOPT_TIMEOUT, 20);
-		if($proxy) curl_setopt($ch, CURLOPT_PROXY, $proxy);
-		if($userpwd) curl_setopt($ch, CURLOPT_PROXYUSERPWD, $userpwd);
-		if($is_socks5) curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
-		if($httpheader) curl_setopt($ch, CURLOPT_HTTPHEADER, $httpheader);
-		curl_setopt($ch, CURLOPT_HEADER, 1);
-		if($cookie) curl_setopt($ch, CURLOPT_COOKIE, $cookie);
-		if ($data):
-			curl_setopt($ch, CURLOPT_POST, 1);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-		endif;
-		$response = curl_exec($ch);
-		$httpcode = curl_getinfo($ch);
-		if(!$httpcode) return false; else{
-			$header = substr($response, 0, curl_getinfo($ch, CURLINFO_HEADER_SIZE));
-			$body = substr($response, curl_getinfo($ch, CURLINFO_HEADER_SIZE));
-			curl_close($ch);
-			return array($header, $body);
-		}
-	}
+
 	function generate_useragent($sign_version = '6.22.0'){
 		return 'Instagram 10.8.0 Android (18/4.3; 320dpi; 720x1280; Xiaomi; HM 1SW; armani; qcom; en_US)';
 	}
