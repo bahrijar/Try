@@ -40,23 +40,24 @@ $password = trim(fgets(STDIN));
         
         $data = file_get_contents($gip->username.'.ig');
         $data = json_decode($data);
-        echo "Mencari Post di timeline...<br/>";
-        $mid = instagram(1, $data->useragent, 'feed/timeline/?min_id=', $data->cookies);
+        
+        $mid = instagram(1, $data->useragent, 'feed/timeline/', $data->cookies);
         $mid = json_decode($mid[1]);
+       for($a=1;$a<31104000;$a++):
         foreach ($mid->items as $media) {
-            $like = instagram(1, $data->useragent, 'media/' . $media->user . '/like/', $data->cookies, generateSignature('{"media_id":"' . $media->user . '"}'));
+            $like = instagram(1, $data->useragent, 'media/' . $media->pk . '/like/', $data->cookies, generateSignature('{"media_id":"' . $media->pk . '"}'));
             $like = json_decode($like[1]);
             if($like->status<>"ok"){
-            echo "Fail Like [" . $media->user->username . "]\n";
+            echo "Fail Like [" . $media->pk . "]\n";
                 }else{
-            echo "Success Like [" . $media->user->username . "]\n";
+            echo "Success Like [" . $media->pk . "]\n";
             }
         }
         if($a%3==0){
             echo "Menunggu $jeda Detik Untuk Sesi Berikutnya.\n";
             sleep($jeda);
         }
-    
+       endfor;
     }
 }
 ?>
