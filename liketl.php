@@ -48,13 +48,12 @@ $password = trim(fgets(STDIN));
     $has_liked = $media->has_liked;
     if($has_liked == False) {
         //************* Like/Unlike Media ****************
-        $user = $media->username;
-        $like = instagram(1, $data->useragent, 'media/' . $media->user . '/like/', $data->cookies, generateSignature('  {"media_id":"' . $media->user . '"}'));
+        $like = instagram(1, $data->useragent, 'media/' . $media->pk . '/like/', $data->cookies, generateSignature('{"media_id":"' . $media->pk . '"}'));
             $like = json_decode($like[1]);
-
-            echo "Success Like @ [" . $media->username . "]\n";
+            
+            echo "Sudah Like [" . $media->username . "]\n";
                 }else{
-            echo "udah di like cuk [" . $media->username. "]\n";
+            echo "kan udah Like [" . $media->pk . "]\n";
             }
         }
 
