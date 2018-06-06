@@ -43,18 +43,18 @@ $password = trim(fgets(STDIN));
         echo "Mencari Post di timeline...<br/>";
         $mid = instagram(1, $data->useragent, 'feed/timeline/?min_id=', $data->cookies);
         $mid = json_decode($mid[1]);
-       for($a=1;$a<10000;$a++):
+       for($a=1;$a<3000;$a++):
         foreach ($mid->items as $media) {
     $has_liked = $media->has_liked;
     if($has_liked == False) {
         //************* Like/Unlike Media ****************
-        $user = " @". $media->user->username;
-        $like = instagram(1, $data->useragent, 'media/' . $media->user . '/like/', $data->cookies, generateSignature('  {"media_id":"' . $media->id . '"}'));
+        $user = $media->username;
+        $like = instagram(1, $data->useragent, 'media/' . $media->user . '/like/', $data->cookies, generateSignature('  {"media_id":"' . $media->user . '"}'));
             $like = json_decode($like[1]);
 
-            echo "Success Like @ [" . $media->user->username . "]\n";
+            echo "Success Like @ [" . $media->username . "]\n";
                 }else{
-            echo "udah di like cuk [" . $media->user->username. "]\n";
+            echo "udah di like cuk [" . $media->username. "]\n";
             }
         }
 
