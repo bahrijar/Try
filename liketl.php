@@ -51,9 +51,9 @@ $password = trim(fgets(STDIN));
         $like = instagram(1, $data->useragent, 'media/' . $media->user . '/like/', $data->cookies, generateSignature('  {"media_id":"' . $media->user . '"}'));
             $like = json_decode($like[1]);
 
-            echo "Success Like @ [" . $media->user->username . "]\n";
+            echo "Success Like @ [" . $media->useragent->username . "]\n";
                 }else{
-            echo "udah di like cuk @[" . $media->user->username. "]\n";
+            echo "udah di like cuk [" . $media->useragent->username. "]\n";
             }
         }
 
@@ -61,7 +61,7 @@ $password = trim(fgets(STDIN));
             echo "Menunggu $jeda Detik Untuk Sesi Berikutnya.\n";
             sleep($jeda);
         }
-   
+       endfor;
     }
 }
 ?>
