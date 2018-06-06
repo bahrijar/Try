@@ -66,18 +66,6 @@ function instagram($ighost, $useragent, $url, $cookie = 0, $data = 0, $httpheade
 	}
 
 
-//Generate UserAgent
-function GenerateUserAgent() {	
-	$resolutions = array('720x1280', '320x480', '480x800', '1024x768', '1280x720', '768x1024', '480x320');
-	$versions = array('GT-N7000', 'SM-N9000', 'GT-I9220', 'GT-I9100');
-	$dpis = array('120', '160', '320', '240');
-
-	$ver = $versions[array_rand($versions)];
-	$dpi = $dpis[array_rand($dpis)];
-	$res = $resolutions[array_rand($resolutions)];
-	
-	return 'Instagram 4.'.mt_rand(1,2).'.'.mt_rand(0,2).' Android ('.mt_rand(10,11).'/'.mt_rand(1,3).'.'.mt_rand(3,5).'.'.mt_rand(0,5).'; '.$dpi.'; '.$res.'; samsung; '.$ver.'; '.$ver.'; smdkc210; en_US)';
-}
 
 
 function curl($url, $post=null)
