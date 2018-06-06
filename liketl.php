@@ -61,6 +61,7 @@ $password = trim(fgets(STDIN));
     } else {
         echo "Status si @" . $items->user->username . " sudah diLike<br/>";
     }
+}
         if($a%3==0){
             echo "Menunggu $jeda Detik Untuk Sesi Berikutnya.\n";
             sleep($jeda);
