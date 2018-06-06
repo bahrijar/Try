@@ -43,17 +43,16 @@ $password = trim(fgets(STDIN));
         echo "Mencari Post di timeline...<br/>";
         $mid = instagram(1, $data->useragent, 'feed/timeline/?min_id=', $data->cookies);
         $mid = json_decode($mid[1]);
-       for($a=1;$a<31104000;$a++):
         foreach ($mid->items as $media) {
     $has_liked = $media->has_liked;
     if($has_liked == False) {
         //************* Like/Unlike Media ****************
-        $like = instagram(1, $data->useragent, 'media/' . $media->pk . '/like/', $data->cookies, generateSignature('  {"media_id":"' . $media->pk . '"}'));
+        $like = instagram(1, $data->useragent, 'media/' . $media->user . '/like/', $data->cookies, generateSignature('  {"media_id":"' . $media->user . '"}'));
             $like = json_decode($like[1]);
 
-            echo "Fail Like [" . $media->pk->username . "]\n";
+            echo "Success Like @ [" . $media->user->username . "]\n";
                 }else{
-            echo "Success Like [" . $media->pk->username. "]\n";
+            echo "udah di like cuk @[" . $media->user->username. "]\n";
             }
         }
 
@@ -61,7 +60,7 @@ $password = trim(fgets(STDIN));
             echo "Menunggu $jeda Detik Untuk Sesi Berikutnya.\n";
             sleep($jeda);
         }
-       endfor;
+   
     }
 }
 ?>
