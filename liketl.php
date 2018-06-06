@@ -48,8 +48,6 @@ $password = trim(fgets(STDIN));
     $has_liked = $media->has_liked;
     if($has_liked == False) {
         //************* Like/Unlike Media ****************
-
-        foreach ($mid->items as $media) {
         $like = instagram(1, $data->useragent, 'media/' . $media->pk . '/like/', $data->cookies, generateSignature('  {"media_id":"' . $media->pk . '"}'));
             $like = json_decode($like[1]);
 
@@ -58,6 +56,7 @@ $password = trim(fgets(STDIN));
             echo "Success Like [" . $media->pk->username. "]\n";
             }
         }
+        
     }
 
         if($a%3==0){
