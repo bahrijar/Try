@@ -43,7 +43,7 @@ $password = trim(fgets(STDIN));
         echo "Mencari Post di timeline...<br/>";
         $mid = instagram(1, $data->useragent, 'feed/timeline/?min_id=', $data->cookies);
         $mid = json_decode($mid[1]);
-       for($a=1;$a<3000;$a++):
+       for($a=1;$a<5;$a++):
         foreach ($mid->items as $media) {
     $has_liked = $media->has_liked;
     if($has_liked == False) {
@@ -52,9 +52,9 @@ $password = trim(fgets(STDIN));
         $like = instagram(1, $data->useragent, 'media/' . $media->pk . '/like/', $data->cookies, generateSignature('{"media_id":"' . $media->pk . '"}'));
             $like = json_decode($like[1]);
             
-            echo "Sudah Like @" . $media->user->username . "]\n";
+            echo "Sudah Like @" . $media->user->username . "\n";
                 }else{
-            echo "kan udah Like [" . $media->user->username . "]\n";
+            echo "kan udah Like @" . $media->user->username . "\n";
             }
         }
 
