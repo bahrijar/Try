@@ -32,7 +32,7 @@ function instagram($ighost, $useragent, $url, $cookie = 0, $data = 0, $httpheade
 	function generate_useragent(){
 		return 'Instagram 10.8.0 Android (18/4.3; 320dpi; 720x1280; Xiaomi; HM 1SW; armani; qcom; en_US)';
 	}
-	function hook($data) {
+	function generateSignature($data) {
 		$hash = hash_hmac('sha256', $data, '68a04945eb02970e2e8d15266fc256f7295da123e123f44b88f09d594a5902df');
       return 'ig_sig_key_version=4&signed_body='.$hash.'.'.urlencode($data);
 	}
@@ -77,11 +77,6 @@ function GenerateUserAgent() {
 	$res = $resolutions[array_rand($resolutions)];
 	
 	return 'Instagram 4.'.mt_rand(1,2).'.'.mt_rand(0,2).' Android ('.mt_rand(10,11).'/'.mt_rand(1,3).'.'.mt_rand(3,5).'.'.mt_rand(0,5).'; '.$dpi.'; '.$res.'; samsung; '.$ver.'; '.$ver.'; smdkc210; en_US)';
-}
-
-//Generate Signature
-function generateSignature($data) {
-	return hash_hmac('sha256', $data, '68a04945eb02970e2e8d15266fc256f7295da123e123f44b88f09d594a5902df');
 }
 
 function curl($url, $post=null)
