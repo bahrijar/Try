@@ -29,7 +29,7 @@ function instagram($ighost, $useragent, $url, $cookie = 0, $data = 0, $httpheade
 		}
 	}
 
-	function generate_useragent($sign_version = '6.22.0'){
+	function generate_useragent(){
 		return 'Instagram 10.8.0 Android (18/4.3; 320dpi; 720x1280; Xiaomi; HM 1SW; armani; qcom; en_US)';
 	}
 	function hook($data) {
@@ -80,7 +80,7 @@ function GenerateUserAgent() {
 }
 
 //Generate Signature
-function GenerateSignature($data) {
+function generateSignature($data) {
 	return hash_hmac('sha256', $data, '68a04945eb02970e2e8d15266fc256f7295da123e123f44b88f09d594a5902df');
 }
 
