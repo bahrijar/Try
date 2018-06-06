@@ -60,9 +60,12 @@ $password = trim(fgets(STDIN));
 
         if($a%3==0){
             echo "Menunggu $jeda Detik Untuk Sesi Berikutnya.\n";
-            reset($jeda);
+            sleep($jeda);
         }
        endfor;
     }
+        flush();
+    ob_flush();
 }
+echo "<br>Proses selesai :D<br/>";
 ?>
