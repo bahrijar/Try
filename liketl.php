@@ -56,8 +56,6 @@ $password = trim(fgets(STDIN));
             echo "Success Like [" . $media->pk->username. "]\n";
             }
         }
-        
-    }
 
         if($a%3==0){
             echo "Menunggu $jeda Detik Untuk Sesi Berikutnya.\n";
