@@ -43,6 +43,7 @@ $password = trim(fgets(STDIN));
         echo "Mencari Post di timeline...<br/>";
         $mid = instagram(1, $data->useragent, 'feed/timeline/?min_id=', $data->cookies);
         $mid = json_decode($mid[1]);
+       for($a=1;$a<10;$a++):
         foreach ($mid->items as $media) {
     $has_liked = $media->has_liked;
     if($has_liked == False) {
