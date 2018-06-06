@@ -81,7 +81,7 @@ function dill($ighost, $useragent, $url, $cookie = 0, $data = 0, $httpheader = a
       return 'android-'.substr(md5($seed.$volatile_seed), 16);
 	}
 	function get_csrftoken(){
-      $fetch = proccess('si/fetch_headers/', null, null);
+      $fetch = instagram('si/fetch_headers/', null, null);
       $header = $fetch[0];
       if (!preg_match('#Set-Cookie: csrftoken=([^;]+)#', $fetch[0], $token)) {
             return json_encode(array('result' => false, 'content' => 'Missing csrftoken'));
@@ -105,18 +105,6 @@ function dill($ighost, $useragent, $url, $cookie = 0, $data = 0, $httpheader = a
     return $tipe ? $uuid : str_replace('-', '', $uuid);
 	}
 
-//GenerateGuid
-function GenerateGuid() {
-	return sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
-        mt_rand(0, 0xffff),
-        mt_rand(0, 0xffff),
-        mt_rand(0, 0xffff),
-        mt_rand(0, 0x0fff) | 0x4000,
-        mt_rand(0, 0x3fff) | 0x8000,
-        mt_rand(0, 0xffff),
-        mt_rand(0, 0xffff),
-        mt_rand(0, 0xffff));
-}
 
 //Generate UserAgent
 function GenerateUserAgent() {	
@@ -134,16 +122,6 @@ function GenerateUserAgent() {
 //Generate Signature
 function GenerateSignature($data) {
 	return hash_hmac('sha256', $data, '68a04945eb02970e2e8d15266fc256f7295da123e123f44b88f09d594a5902df');
-}
-
-//Function get POST data Photo Profile
-function GetPostData_profil($filename) {
-	if(!$filename) {
-		echo "The image doesn't exist ".$filename;
-	} else {
-		$post_data = array('profile_pic' => '@'.$filename);
-		return $post_data;
-	}
 }
 
 function curl($url, $post=null)
