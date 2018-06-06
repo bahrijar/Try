@@ -2,7 +2,7 @@
 ####Copyright By Janu fb.com/lastducky####
 ####Thanks For Indra Swastika(fungsi.php)####
 ####Change This Copyright Doesn't Make You a Coder :) ####
-#######EDIT THIS AREA#########
+#######EDIT THIS AREA
 #######END OF EDIT AREA########
 require_once('func.php');
 echo "Username?\nInput : ";
